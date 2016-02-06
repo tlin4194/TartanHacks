@@ -52,11 +52,16 @@ function getTopRequest(keywords, page) {
         dataFromRequest = res;
         allTopData.push(dataFromRequest);
         for (item of dataFromRequest.Items.Item) {
-            topImgLinks.push(item.LargeImage.URL);
+            var trimData = {
+                url: item.LargeImage.URL,
+                title: item.ItemAttributes.Title,
+                price: item.OfferSummary.LowestNewPrice.FormattedPrice
+            };
+            topLinks.push(trimData);
         }
 
         // set image
-        $('#top-photo').attr('src', topImgLinks[0]);
+        $('#top-photo').attr('src', topLinks[0].url);
     }, 'json');
 }
 
@@ -67,7 +72,12 @@ function getBotRequest(keywords, page) {
         dataFromRequest = res;
         allBotData.push(dataFromRequest);
         for (item of dataFromRequest.Items.Item) {
-            botImgLinks.push(item.LargeImage.URL);
+            var trimData = {
+                url: item.LargeImage.URL,
+                title: item.ItemAttributes.Title,
+                price: item.OfferSummary.LowestNewPrice.FormattedPrice
+            };
+            botLinks.push(trimData);
         }
 
         // set image
@@ -78,10 +88,8 @@ function getBotRequest(keywords, page) {
 
 $(document).ready( function (){
     // // get preliminary data
-    for (var i = 1; i <= 10; i++) {
-        getTopRequest('coats', i);
-        getBotRequest('jeans', i);
-    }
+    getTopRequest('coats', 1);
+    getBotRequest('jeans', 1);
 
     // bind UI elements
     $(window).resize(function (){
@@ -96,15 +104,17 @@ $(document).ready( function (){
 
     // bind checkmarks 
     $('#no_pic').click( function (){
-        if (!(topIndex >= topImgLinks.length)){
-            $('#top-photo').attr('src', topImgLinks[topIndex]);
+        if (!(topIndex >= topLinks.length)){
+            $('#top-photo').attr('src', topLinks[topIndex].url);
+            console.log(topLinks[topIndex].price);
+            console.log(topLinks[topIndex].title);
             topIndex ++;
         }
     });
 
     $('#yes_pic').click( function (){
-        if (!(topIndex >= topImgLinks.length)){
-            $('#top-photo').attr('src', topImgLinks[topIndex]);
+        if (!(topIndex >= topLinks.length)){
+            $('#top-photo').attr('src', topLinks[topIndex].url);
             topIndex ++;
         }
     });
