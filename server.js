@@ -7,7 +7,7 @@ var accessKey = "AKIAICJVVKTXCDI5BXHA";
 var accessSecretKey = "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";
 var associateId = "tartanhacks-20";
 var prodAdv = aws.createProdAdvClient(accessKey, accessSecretKey, associateId);
-var options = {SearchIndex: "Fashion", Keywords: "Coats"};
+var options = {SearchIndex: "Fashion", Keywords: "Coats", ResponseGroup: "Images,ItemAttributes,Offers", ItemPage: 10};
 
 // sends file back to client
 function sendFile(res, url) {
@@ -25,7 +25,7 @@ function sendFile(res, url) {
 function sendData(res) {
   prodAdv.call("ItemSearch", options, function (err, amazonRes){
     //console.log(res);
-    res.end(amazonRes.stringify());
+    res.end(JSON.stringify(amazonRes));
   });
 }
 
