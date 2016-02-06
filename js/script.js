@@ -43,6 +43,8 @@ function start() {
     $("#gender-select-btn-man").click(function (){
         pickClothes("man");
     });
+
+
 }
 
 function getTopRequest(keywords, page) {
@@ -52,11 +54,16 @@ function getTopRequest(keywords, page) {
         dataFromRequest = res;
         allTopData.push(dataFromRequest);
         for (item of dataFromRequest.Items.Item) {
-            topImgLinks.push(item.LargeImage.URL);
+            var trimData = {
+                url: item.LargeImage.URL,
+                title: item.ItemAttributes.Title,
+                price: item.OfferSummary.LowestNewPrice.FormattedPrice
+            };
+            topLinks.push(trimData);
         }
 
         // set image
-        $('#top-photo').attr('src', topImgLinks[0]);
+        $('#top-photo').attr('src', topLinks[0].url);
     }, 'json');
 }
 
@@ -67,21 +74,24 @@ function getBotRequest(keywords, page) {
         dataFromRequest = res;
         allBotData.push(dataFromRequest);
         for (item of dataFromRequest.Items.Item) {
-            botImgLinks.push(item.LargeImage.URL);
+            var trimData = {
+                url: item.LargeImage.URL,
+                title: item.ItemAttributes.Title,
+                price: item.OfferSummary.LowestNewPrice.FormattedPrice
+            };
+            botLinks.push(trimData);
         }
 
         // set image
-        //$('#top-photo').attr('src', topImgLinks[0]);
+        //$('#top-photo').attr('src', topLinks[0]);
     }, 'json');
 }
 
 
 $(document).ready( function (){
     // // get preliminary data
-    for (var i = 1; i <= 10; i++) {
-        getTopRequest('coats', i);
-        getBotRequest('jeans', i);
-    }
+    getTopRequest('coats', 1);
+    getBotRequest('jeans', 1);
 
     // bind UI elements
     $(window).resize(function (){
@@ -95,19 +105,55 @@ $(document).ready( function (){
         .css('height', $('.swag-pic').height());
 
     // bind checkmarks 
+    // bind checkmarks 
     $('#no_pic').click( function (){
-        if (!(topIndex >= topImgLinks.length)){
-            $('#top-photo').attr('src', topImgLinks[topIndex]);
+        if (!(topIndex >= topLinks.length)){
+            $('#top-photo').attr('src', topLinks[topIndex].url);
             topIndex ++;
         }
+        $("#add_screen").addClass("hidden");
+        console.log("hi")
     });
 
     $('#yes_pic').click( function (){
-        if (!(topIndex >= topImgLinks.length)){
-            $('#top-photo').attr('src', topImgLinks[topIndex]);
-            topIndex ++;
-        }
+        $("#add_screen").removeClass("hidden");
     });
+
+    $('#tinder').keydown(function(e) {
+    switch(e.which) {
+        case 37: // left
+            if (!(topIndex >= topLinks.length)){
+            $('#top-photo').attr('src', topLinks[topIndex].url);
+            topIndex ++;
+            }
+            console.log("hi")
+        break;
+
+        case 39: // right
+            if (!(topIndex >= topLinks.length)){
+            $('#top-photo').attr('src', topLinks[topIndex].url);
+            topIndex ++;
+            }
+        break;
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+    });
+
+
+    $(".clothing").click(function(){
+    $("#clothes").animate({"left":"30%"},"slow");
+    $(".clothing").css("text-align", "right");
+    if($(".clothing").hasClass("active")||!($(".sub").hasClass("hidden")) ){
+        $(".clothing").removeClass("active");
+        $(".sub").addClass("hidden");
+    }
+    $(this).addClass("active");
+    $(this).children().removeClass("hidden");
+  });
+
+    
 });
 
 

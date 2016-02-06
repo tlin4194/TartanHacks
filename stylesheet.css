@@ -119,6 +119,78 @@ html, body {
 }
 
 
+/*Tiffany's code*/
+
+#home{
+    left: 30px;
+    top: 30px;
+    position: fixed;
+    font-size: 3em;
+    color: #edc82b;
+}
+#home:hover{
+    color:#696e70;
+}
+.clothing{
+    padding: 5px 20px;
+    width: 200px;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: 1.3em;
+    color: #696e70;
+}
+.clothing:hover{
+    color: #edc82b;
+}
+#clothes{
+    position: fixed;
+    left:50%;
+    margin-left: -110px;
+    top:25%;
+    z-index:5;
+}
+.clothing.active{
+    padding: 5px 20px;
+    width: 200px;
+    height: 64px;
+    position: relative;
+    text-align: right;
+    font-size: 1.6em;
+    color: #edc82b;
+    margin-bottom: -5px;
+}
+.category{
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: #edc82b;
+    color: #edc82b;
+    font-size:14px;
+    position: relative;
+    margin: 3px 5px;
+    left: 70%; 
+    width: 65px;
+    padding: 3px 2px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+}
+.sub{
+    position: relative;
+    width: 350px;
+    top: -30px;
+    left: -5px; 
+    float: left;   
+}
+
+.button {
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  text-decoration: none;
+  z-index: 10;
+}
+
 /* Justin's code */
 
 .swipeContainer {
@@ -164,33 +236,26 @@ html, body {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
-
-    float: center;
-    margin-left: 125px;
-    overflow: hidden;
-}
-
-#top-photo-container {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    margin-left: 125px;
-
-    display: block;
-    height: 100%;
-    max-height: 100%;
-    overflow: hidden;
+    postion: absolute;
+    margin: auto;
+    overflow:hidden;
 }
 
 #top-photo {
     height: 100%;
-    max-height: 100%;
+    max-height: 98%;
+    left:0;
+    right:0;
+    bottom:0;
+    top: 0;
     margin: auto;
-
+    overflow: hidden;
     display: block;
+    position: absolute;
 }
 
 #gradient {
+    position: absolute;
     z-index: 500;
     background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
     background: -moz-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
@@ -208,10 +273,16 @@ html, body {
 
     background-size:100%;
     cursor:pointer;
-    margin-top: 30%;
+/*    margin-top: 30%;
     width: 100%;
-    height: 70%;
+    height: 70%;*/
     opacity: 0;
+    width: 450px;
+    height: 60%;
+    left: 0;
+    right:0;
+    bottom:0;
+    margin: auto;
 }
 
 #gradient:hover{
@@ -219,6 +290,62 @@ html, body {
     z-index: 500;
 }
 
+#product_name{
+    color:#000000;
+    font-size: 1.3em;
+    text-align: center;
+    position: absolute;
+    z-index: 20;
+    width: 100px;
+    height: 30px;
+    bottom: 20%;
+    left: 0;
+    right:0;
+    margin: auto;
+    display: inline-block;
+}
+#price{
+    color:#000000;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    z-index: 20;
+    width: 100px;
+    height: 30px;
+    bottom: 10%;
+    left: 0;
+    right:0;
+    margin: auto;
+    display: inline-block;
+}
+#add_screen{
+    background-color: #EDC82B;
+    opacity: 0.7;
+    position:absolute;
+    width: 450px;
+    height: 450px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    top: 0;
+    overflow: hidden;
+}
+#add_outfit{
+    padding: 5px 7px;
+    width: 130px;
+    height: 30px;
+    border: 1px solid #696e70;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+}
 
 
 
