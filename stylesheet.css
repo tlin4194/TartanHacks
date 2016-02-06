@@ -1,0 +1,69 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#gender-select {
+  background-color: #edc82b;
+}
+
+#first-logo {
+  position: absolute;
+  width: 400px;
+  left: 50%;
+  margin-left: -200px;
+  text-align: center;
+  z-index: 50;
+  top: 40%;
+}
+
+#first-logo-title {
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+#first-logo #begin-btn {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 38%;
+  padding: 5px;
+  margin: auto;
+}
+
+#first-logo #begin-btn .overlay{
+  background: #222;
+  opacity: .5;
+  margin: auto;
+}
+
+.swag-pic {
+  height: 120%;
+}
+
+.swag-pic.man {
+  position: absolute;
+  right: 7%;
+}
+
+.swag-pic.woman {
+  position: absolute;
+  left: 10.5%;
+}

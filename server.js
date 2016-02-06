@@ -23,7 +23,7 @@ function sendFile(res, url) {
 }
 
 function sendData(res) {
-  prodAdv.call("ItemSearch", options, function (err, amazonRes){
+  prodAdv.call("ItemLookup", options, function (err, amazonRes){
     //console.log(res);
     res.end(JSON.stringify(amazonRes));
   });
