@@ -1,0 +1,32 @@
+{
+  "name": "tartanhacks",
+  "version": "1.0.0",
+  "description": "Tartanhacks Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlin4194/TartanHacks.git"
+  },
+  "keywords": [
+    "we",
+    "are",
+    "so",
+    "cool"
+  ],
+  "author": "Tiffany Chiang, Justin Cheng, Anatol Liu, Sharon Yu",
+  "license": "ISC",
+  "dependencies": {
+    "http": "*",
+    "fs": "*",
+    "url": "*",
+    "aws-lib": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/tlin4194/TartanHacks/issues"
+  },
+  "homepage": "https://github.com/tlin4194/TartanHacks#readme"
+}
