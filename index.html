@@ -7,9 +7,11 @@
     <!--<script src="https://use.typekit.net/ozp3dfu.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/globals.js"></script>
     <script src="js/script.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <div class="container" id="begin">
+
+    <div class="container hidden" id="begin">
         <div id="swag-pic-overlay-woman">
             <div class="btn hidden" id="gender-select-btn-woman">
                 women
@@ -30,6 +32,19 @@
             </div>
         </div>
         <img src="img/man.png" class="swag-pic man">
+    </div>
+
+    <div class="container" id="tinder">
+        <div class ="swipeContainer" id="swipe_box">
+            <img src="img/no.png" id="no_pic">
+            <img src="img/yes.png" id="yes_pic">
+            <div id="top-photo-container">
+                <img id="top-photo">
+            </div>
+            <div class="squareContainer">
+                <div id = "gradient">
+            </div>
+        </div>
     </div>
 </body>
 </html>

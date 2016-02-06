@@ -20,6 +20,10 @@ html, body {
     background-color: #edc82b;
 }
 
+.container#tinder {
+    background: #313335;
+}
+
 #first-logo {
     position: absolute;
     width: 400px;
@@ -114,6 +118,106 @@ html, body {
                                            rgba(237, 200, 43, 1) 75%);
 }
 
+
+/* Justin's code */
+
+.swipeContainer {
+    position: absolute;
+    width: 700px;
+    height: 450px;
+    left:50%;
+    top:50%;
+    margin: -225px 0 0 -350px;
+    overflow: hidden;
+}
+
+
+#no_pic {
+    height: 42px;
+    margin-top: 200px;
+    float: left;
+    cursor: pointer;
+}
+
+#yes_pic {
+    height: 42px;
+    margin-top: 200px;
+    float: right;
+    cursor: pointer;
+}
+
+#swipe_box  {
+  /*background-color: #fff */
+}
+
+.squareContainer {
+    background-color: #fff;
+    width: 450px;
+    height: 450px;
+
+    -webkit-border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+    border:1px solid #EDC82B;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+
+    float: center;
+    margin-left: 125px;
+    overflow: hidden;
+}
+
+#top-photo-container {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    margin-left: 125px;
+
+    display: block;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+#top-photo {
+    height: 100%;
+    max-height: 100%;
+    margin: auto;
+
+    display: block;
+}
+
+#gradient {
+    z-index: 500;
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+    background-size:100%;
+    cursor:pointer;
+    margin-top: 30%;
+    width: 100%;
+    height: 70%;
+    opacity: 0;
+}
+
+#gradient:hover{
+    opacity: 1;
+    z-index: 500;
+}
 
 
 
