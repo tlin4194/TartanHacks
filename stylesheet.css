@@ -24,6 +24,11 @@ html, body {
     background: #313335;
 }
 
+.container#clothes-select {
+    background: #313335;
+}
+
+
 #first-logo {
     position: absolute;
     width: 400px;
@@ -233,6 +238,78 @@ html, body {
 #gradient:hover{
     opacity: 1;
     z-index: 500;
+}
+
+/*tiffany*/
+
+#home{
+    left: 30px;
+    top: 30px;
+    position: fixed;
+    font-size: 3em;
+    color: #edc82b;
+}
+#home:hover{
+    color:#696e70;
+}
+.clothing{
+    padding: 5px 20px;
+    width: 200px;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: 1.3em;
+    color: #696e70;
+}
+.clothing:hover{
+    color: #edc82b;
+}
+#clothes{
+    position: fixed;
+    left:50%;
+    margin-left: -110px;
+    top:25%;
+    z-index:5;
+}
+.clothing.active{
+    padding: 5px 20px;
+    width: 200px;
+    height: 64px;
+    position: relative;
+    text-align: right;
+    font-size: 1.6em;
+    color: #edc82b;
+    margin-bottom: -5px;
+}
+.category{
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: #edc82b;
+    color: #edc82b;
+    font-size:14px;
+    position: relative;
+    margin: 3px 5px;
+    left: 70%; 
+    width: 65px;
+    padding: 3px 2px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+}
+.sub{
+    position: relative;
+    width: 350px;
+    top: -30px;
+    left: -5px; 
+    float: left;   
+}
+
+.button {
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    text-decoration: none;
+    z-index: 10;
 }
 
 
