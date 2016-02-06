@@ -5,6 +5,26 @@
 //         });
 // });
 
+function tiffany() {
+    $( "#right" ).click(function() {
+        $( "#block" ).animate({ "left": "+=50px" }, "slow");
+    });
+
+    $( "#left" ).click(function(){
+        $( "#block" ).animate({ "left": "-=50px" }, "slow" );
+    });
+    $(".clothing").click(function(){
+        $("#clothes").animate({"left":"30%"},"slow");
+        $(".clothing").css("text-align", "right");
+        if($(".clothing").hasClass("active")||!($(".sub").hasClass("hidden")) ){
+            $(".clothing").removeClass("active");
+            $(".sub").addClass("hidden");
+        }
+        $(this).addClass("active");
+        $(this).children().removeClass("hidden");
+    });
+}
+
 function pickClothes(gender) {
     // waiting on tiff
     console.log(gender);
@@ -88,8 +108,12 @@ function getBotRequest(keywords, page) {
 
 $(document).ready( function (){
     // // get preliminary data
-    getTopRequest('coats', 1);
-    getBotRequest('jeans', 1);
+    for (var i = 1; i < 11; i++) {
+        getTopRequest('coats', i);
+        getBotRequest('jeans', i);
+    }
+
+    tiffany();
 
     // bind UI elements
     $(window).resize(function (){
@@ -103,7 +127,7 @@ $(document).ready( function (){
         .css('height', $('.swag-pic').height());
 
     // bind checkmarks 
-    $('#no_pic').click( function (){
+    $('.topSwipeContainer #no_pic').click( function (){
         if (!(topIndex >= topLinks.length)){
             $('#top-photo').attr('src', topLinks[topIndex].url);
             console.log(topLinks[topIndex].price);
@@ -112,7 +136,14 @@ $(document).ready( function (){
         }
     });
 
-    $('#yes_pic').click( function (){
+    $('.botSwipeContainer #no_pic').click( function (){
+        if (!(botIndex >= botLinks.length)){
+            $('#bot-photo').attr('src', botLinks[botIndex].url);
+            botIndex ++;
+        }
+    });
+
+    $('.topSwipeContainer #yes_pic').click( function (){
         selectedTop = topLinks[topIndex-1];
         $('.topSwipeContainer #yes_pic, .topSwipeContainer #no_pic')
             .addClass('hidden');
@@ -130,10 +161,19 @@ $(document).ready( function (){
         }, 600, function() {
             $('.topSwipeContainer #gradient').addClass('hidden');
             $('.botSwipeContainer').removeClass('hidden');
-            $('.botSwipeContainer').fadeTo('slow', 1);
+            $('.botSwipeContainer').fadeTo('slow', 1, function (){
+                $('#bot-photo').attr('src', botLinks[0].url);
+            });
         });
 
         $('.botSwipeContainer').css('margin-top', '-120px');
+    });
+
+    $('.botSwipeContainer #yes_pic').click( function (){
+        if (!(botIndex >= botLinks.length)){
+            $('#bot-photo').attr('src', botLinks[botIndex].url);
+            botIndex ++;
+        }
     });
 });
 

@@ -193,13 +193,21 @@ html, body {
     display: block;
 }
 
+#bot-photo {
+    height: 100%;
+    max-height: 100%;
+    margin: auto;
+
+    display: block;
+}
+
 #gradient {
     position: absolute;
     z-index: 500;
-    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
-    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
-    background: -o-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
-    background: linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: -webkit-linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
+    background: -moz-linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
+    background: -o-linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
+    background: linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
 
     -webkit-transition: opacity 0.3s ease-out;
     -moz-transition: opacity 0.3s ease-out;
