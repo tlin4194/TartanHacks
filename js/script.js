@@ -5,6 +5,10 @@
 //         });
 // });
 
+function reload() {
+    location.reload();
+}
+
 function tiffany() {
     $( "#right" ).click(function() {
         $( "#block" ).animate({ "left": "+=50px" }, "slow");
