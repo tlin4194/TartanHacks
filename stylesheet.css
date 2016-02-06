@@ -6,6 +6,7 @@ html, body {
     font-family: "Helvetica";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    background: #313335;
 }
 
 .hidden {
@@ -290,12 +291,19 @@ html, body {
     position: relative;
     margin: 3px 5px;
     left: 70%; 
-    width: 65px;
+    width: 70px;
     padding: 3px 2px;
     text-align: center;
     display: inline-block;
     float: left;
+    cursor: pointer;
 }
+
+.category:hover{
+    background: #edc82b;
+    color: #313335;
+}
+
 .sub{
     position: relative;
     width: 350px;

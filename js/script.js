@@ -25,9 +25,42 @@ function tiffany() {
     });
 }
 
-function pickClothes(gender) {
-    // waiting on tiff
-    console.log(gender);
+function linkContainers() {
+    $('#gender-select-btn-man, #gender-select-btn-woman').click( function (){
+        if (this.id.includes('man')) searchIndex = 'FashionMen';
+        else searchIndex = 'FashionWomen';
+        $('#gender-select').fadeTo('slow', 0, function (){
+            $('#gender-select').addClass('hidden');
+        });
+        $('#clothes-select').removeClass('hidden');
+        $('#clothes-select').fadeTo('slow', 1);
+    });
+}
+
+function getData(i) {
+    getTopRequest(firstKeyword, searchIndex, i);
+    getBotRequest(secondKeyword, searchIndex, i);
+}
+
+function clothesSelect() {
+    $('.category').click( function (){
+        if (clickCount === 0) {
+            firstKeyword = $(this).text();
+            clickCount ++;
+        }
+        else if (clickCount === 1) {
+            secondKeyword = $(this).text();
+            clickCount ++;
+
+            $('#clothes-select').fadeTo('slow', 0, function (){
+                $('#clothes-select').addClass('hidden');
+                getData(1);
+            });
+
+            $('#tinder').removeClass('hidden');
+            $('#tinder').fadeTo('slow', 1);
+        }
+    });
 }
 
 function start() {
@@ -55,18 +88,12 @@ function start() {
     });
 
     $('#begin').attr('id', 'gender-select');
-
-    // bind functional shit
-    $("#gender-select-btn-woman").click(function (){
-        pickClothes("woman");
-    });
-    $("#gender-select-btn-man").click(function (){
-        pickClothes("man");
-    });
+    clothesSelect();
 }
 
-function getTopRequest(keywords, page) {
-    var url = '/data?Keywords=' + keywords + "&ItemPage=" + page.toString();
+function getTopRequest(keywords, searchIndex, page) {
+    var url = '/data?Keywords=' + keywords + '&SearchIndex=' + searchIndex + 
+              '&ItemPage=' + page.toString();
     $.get(url, function (res){
         console.log(res);
         dataFromRequest = res;
@@ -80,13 +107,15 @@ function getTopRequest(keywords, page) {
             topLinks.push(trimData);
         }
 
+        requestCompleted = true;
         // set image
         $('#top-photo').attr('src', topLinks[0].url);
     }, 'json');
 }
 
-function getBotRequest(keywords, page) {
-    var url = '/data?Keywords=' + keywords + "&ItemPage=" + page.toString();
+function getBotRequest(keywords, searchIndex, page) {
+    var url = '/data?Keywords=' + keywords + '&SearchIndex=' + searchIndex + 
+              '&ItemPage=' + page.toString();
     $.get(url, function (res){
         console.log(res);
         dataFromRequest = res;
@@ -108,12 +137,13 @@ function getBotRequest(keywords, page) {
 
 $(document).ready( function (){
     // // get preliminary data
-    for (var i = 1; i < 11; i++) {
-        getTopRequest('coats', i);
-        getBotRequest('jeans', i);
-    }
+    // for (var i = 1; i < 11; i++) {
+    //     getTopRequest('coats', i);
+    //     getBotRequest('jeans', i);
+    // }
 
     tiffany();
+    linkContainers();
 
     // bind UI elements
     $(window).resize(function (){
@@ -128,7 +158,7 @@ $(document).ready( function (){
 
     // bind checkmarks 
     $('.topSwipeContainer #no_pic').click( function (){
-        if (!(topIndex >= topLinks.length)){
+        if (!(topIndex >= topLinks.length) && requestCompleted){
             $('#top-photo').attr('src', topLinks[topIndex].url);
             console.log(topLinks[topIndex].price);
             console.log(topLinks[topIndex].title);
@@ -137,7 +167,7 @@ $(document).ready( function (){
     });
 
     $('.botSwipeContainer #no_pic').click( function (){
-        if (!(botIndex >= botLinks.length)){
+        if (!(botIndex >= botLinks.length) && requestCompleted){
             $('#bot-photo').attr('src', botLinks[botIndex].url);
             botIndex ++;
         }
