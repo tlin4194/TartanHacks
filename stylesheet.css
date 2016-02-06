@@ -174,46 +174,46 @@ html, body {
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
-
-    float: center;
-    margin-left: 125px;
-    overflow: hidden;
-}
-
-/*#top-photo-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: relative;
     margin: auto;
-
-    display: block;
-    max-height: 100%;
-    overflow: hidden;
-}*/
+    overflow:hidden;
+}
 
 #top-photo {
     height: 100%;
-    max-height: 100%;
+    max-height: 98%;
+    left:0;
+    right:0;
+    bottom:0;
+    top: 0;
     margin: auto;
-
+    overflow: hidden;
     display: block;
+    overflow:hidden;
+    position: absolute;
 }
 
 #bot-photo {
     height: 100%;
-    max-height: 100%;
+    max-height: 98%;
+    left:0;
+    right:0;
+    bottom:0;
+    top: 0;
     margin: auto;
-
+    overflow: hidden;
     display: block;
+    overflow:hidden;
+    position: absolute;
 }
 
 #gradient {
     position: absolute;
-    z-index: 500;
-    background: -webkit-linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
-    background: -moz-linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
-    background: -o-linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
-    background: linear-gradient(rgba(0,0,0,0) 0%, rgba(237,200,43,0.8) 80%);
+    z-index: 150;
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
+    background: linear-gradient(rgba(0,0,0,0), rgba(237,200,43,0.55));
 
     -webkit-transition: opacity 0.3s ease-out;
     -moz-transition: opacity 0.3s ease-out;
@@ -231,14 +231,77 @@ html, body {
     height: 70%;*/
     opacity: 0;
     width: 450px;
-    height: 350px;
-    margin-top: 100px;
-    margin-left: 125px;
+    height: 60%;
+    left: 0;
+    right:0;
+    bottom:0;
+    margin: auto;
 }
 
 #gradient:hover{
     opacity: 1;
     z-index: 500;
+}
+
+#product_name{
+    color:#000000;
+    font-size: 1.3em;
+    text-align: center;
+    position: absolute;
+    z-index: 20;
+    max-width: 80%;
+    height: 30px;
+    bottom: 20%;
+    overflow-x: hidden;
+    white-space: nowrap;
+    left: 0;
+    right:0;
+    margin: auto;
+    display: inline-block;
+}
+#price{
+    color:#000000;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    z-index: 20;
+    width: 100px;
+    height: 30px;
+    bottom: 10%;
+    left: 0;
+    right:0;
+    margin: auto;
+    display: inline-block;
+}
+#add_screen{
+    z-index: 209;
+    background-color: #EDC82B;
+    opacity: 0.7;
+    position:absolute;
+    width: 450px;
+    height: 450px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    top: 0;
+    overflow: hidden;
+}
+#add_outfit{
+    z-index: 210;
+    padding: 5px 7px;
+    width: 130px;
+    height: 30px;
+    border: 1px solid #696e70;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
 }
 
 /*tiffany*/

@@ -27,8 +27,8 @@ function tiffany() {
 
 function linkContainers() {
     $('#gender-select-btn-man, #gender-select-btn-woman').click( function (){
-        if (this.id.includes('man')) searchIndex = 'FashionMen';
-        else searchIndex = 'FashionWomen';
+        if (this.id.includes('woman')) searchIndex = 'FashionWomen';
+        else searchIndex = 'FashionMen';
         $('#gender-select').fadeTo('slow', 0, function (){
             $('#gender-select').addClass('hidden');
         });
@@ -110,6 +110,8 @@ function getTopRequest(keywords, searchIndex, page) {
         requestCompleted = true;
         // set image
         $('#top-photo').attr('src', topLinks[0].url);
+        $(".topSwipeContainer #product_name").text(topLinks[0].title);
+        $(".topSwipeContainer #price").text(topLinks[0].price);
     }, 'json');
 }
 
@@ -134,6 +136,78 @@ function getBotRequest(keywords, searchIndex, page) {
     }, 'json');
 }
 
+function bindCheckBoxes() {
+    // bind checkmarks 
+    $('.topSwipeContainer #no_pic').click( function (){
+        if (!(topIndex >= topLinks.length) && requestCompleted){
+            $('#top-photo').attr('src', topLinks[topIndex].url);
+            $(".topSwipeContainer #product_name").text(
+                topLinks[topIndex].title.substring(0, 35)
+            );
+            $(".topSwipeContainer #price").text(topLinks[topIndex].price);
+            topIndex ++;
+        }
+        $(".topSwipeContainer #add_screen").addClass("hidden");
+        $('#gradient').removeClass('hidden');
+    });
+
+    $('.topSwipeContainer #yes_pic').click( function (){
+        console.log('wat');
+        $(".topSwipeContainer #add_screen").removeClass("hidden");
+        $('.topSwipeContainer #gradient').addClass('hidden');
+    });
+
+    $(".topSwipeContainer #add_screen").click( function (){
+        console.log("clicked");
+        $(".topSwipeContainer #add_screen").addClass('hidden');
+        selectedTop = topLinks[topIndex-1];
+        $('.topSwipeContainer #yes_pic, .topSwipeContainer #no_pic')
+            .addClass('hidden');
+        $('.topSwipeContainer').animate({
+            'width': '280px',
+            'height': '180px',
+            'margin-left': '-140px',
+            'margin-top': '-360px'
+        }, 600);
+
+        $('.topSwipeContainer .squareContainer').animate({
+            'width': '180px',
+            'height': '180px',
+            'margin-left': '50px'
+        }, 600, function() {
+            $('.topSwipeContainer #gradient').addClass('hidden');
+            $('.botSwipeContainer').removeClass('hidden');
+            $('.botSwipeContainer').fadeTo('slow', 1, function (){
+                $('#bot-photo').attr('src', botLinks[0].url);
+                $(".botSwipeContainer #product_name").text(
+                    botLinks[0].title.substring(0, 35)
+                );
+                $(".botSwipeContainer #price").text(botLinks[0].price);
+            });
+        });
+        $('.botSwipeContainer').css('margin-top', '-120px');
+    });
+
+    $('.botSwipeContainer #no_pic').click( function (){
+        if (!(botIndex >= botLinks.length) && requestCompleted){
+            $('#bot-photo').attr('src', botLinks[botIndex].url);
+            $(".botSwipeContainer #product_name").text(
+                botLinks[botIndex].title.substring(0, 35)
+            );
+            $(".botSwipeContainer #price").text(botLinks[botIndex].price);
+            botIndex ++;
+        }
+
+        $(".botSwipeContainer #add_screen").addClass("hidden");
+        $('#gradient').removeClass('hidden');
+    });
+
+    $('.botSwipeContainer #yes_pic').click( function (){
+        $("#gradient").addClass("hidden");
+        $(".botSwipeContainer #add_screen").removeClass("hidden");
+    });
+}
+
 
 $(document).ready( function (){
     // // get preliminary data
@@ -155,56 +229,15 @@ $(document).ready( function (){
     $('#swag-pic-overlay-man, #swag-pic-overlay-woman')
         .css('width', $('.swag-pic').width())
         .css('height', $('.swag-pic').height());
+    bindCheckBoxes();
 
-    // bind checkmarks 
-    $('.topSwipeContainer #no_pic').click( function (){
-        if (!(topIndex >= topLinks.length) && requestCompleted){
-            $('#top-photo').attr('src', topLinks[topIndex].url);
-            console.log(topLinks[topIndex].price);
-            console.log(topLinks[topIndex].title);
-            topIndex ++;
-        }
-    });
+    // $('#home').click( function (){
+    //     console.log("home");
+    //     $('.container').addClass('hidden');
+    //     $('#gender-select').removeClass('hidden');
+    //     $('#gender-select').css('opacity', '1');
+    // });
 
-    $('.botSwipeContainer #no_pic').click( function (){
-        if (!(botIndex >= botLinks.length) && requestCompleted){
-            $('#bot-photo').attr('src', botLinks[botIndex].url);
-            botIndex ++;
-        }
-    });
-
-    $('.topSwipeContainer #yes_pic').click( function (){
-        selectedTop = topLinks[topIndex-1];
-        $('.topSwipeContainer #yes_pic, .topSwipeContainer #no_pic')
-            .addClass('hidden');
-        $('.topSwipeContainer').animate({
-            'width': '280px',
-            'height': '180px',
-            'margin-left': '-140px',
-            'margin-top': '-360px'
-        }, 600);
-
-        $('.topSwipeContainer .squareContainer').animate({
-            'width': '180px',
-            'height': '180px',
-            'margin-left': '50px'
-        }, 600, function() {
-            $('.topSwipeContainer #gradient').addClass('hidden');
-            $('.botSwipeContainer').removeClass('hidden');
-            $('.botSwipeContainer').fadeTo('slow', 1, function (){
-                $('#bot-photo').attr('src', botLinks[0].url);
-            });
-        });
-
-        $('.botSwipeContainer').css('margin-top', '-120px');
-    });
-
-    $('.botSwipeContainer #yes_pic').click( function (){
-        if (!(botIndex >= botLinks.length)){
-            $('#bot-photo').attr('src', botLinks[botIndex].url);
-            botIndex ++;
-        }
-    });
 });
 
 

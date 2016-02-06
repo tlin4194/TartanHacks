@@ -7,7 +7,7 @@ var accessKey = "AKIAICJVVKTXCDI5BXHA";
 var accessSecretKey = "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";
 var associateId = "tartanhacks-20";
 var prodAdv = aws.createProdAdvClient(accessKey, accessSecretKey, associateId);
-var options = {SearchIndex: "Fashion", Keywords: "Coats", ResponseGroup: "Images,ItemAttributes,Offers"};
+var options = {SearchIndex: "Fashion", Keywords: "Crop Top", ResponseGroup: "Images,ItemAttributes,Offers"};
 
 // sends file back to client
 function sendFile(res, url) {
@@ -41,11 +41,13 @@ var server = http.createServer(function (req, res) {
       for (var i = 0; i < params.length; i++) {
         var split = params[i].split("=");
         key = split[0];
-        val = split[1];
+        val = split[1].split("%20").join(" ");
         if (["SearchIndex", "Keywords", "ResponseGroup", "ItemPage"].indexOf(key) != -1) {
           options[key] = val;
         }
       }
+
+      console.log(options);
       sendData(res);
     }
   }
