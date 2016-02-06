@@ -131,6 +131,10 @@ html, body {
     overflow: hidden;
 }
 
+.botSwipeContainer {
+    opacity: 0;
+}
+
 
 #no_pic {
     height: 42px;

@@ -113,10 +113,27 @@ $(document).ready( function (){
     });
 
     $('#yes_pic').click( function (){
-        if (!(topIndex >= topLinks.length)){
-            $('#top-photo').attr('src', topLinks[topIndex].url);
-            topIndex ++;
-        }
+        selectedTop = topLinks[topIndex-1];
+        $('.topSwipeContainer #yes_pic, .topSwipeContainer #no_pic')
+            .addClass('hidden');
+        $('.topSwipeContainer').animate({
+            'width': '280px',
+            'height': '180px',
+            'margin-left': '-140px',
+            'margin-top': '-360px'
+        }, 600);
+
+        $('.topSwipeContainer .squareContainer').animate({
+            'width': '180px',
+            'height': '180px',
+            'margin-left': '50px'
+        }, 600, function() {
+            $('.topSwipeContainer #gradient').addClass('hidden');
+            $('.botSwipeContainer').removeClass('hidden');
+            $('.botSwipeContainer').fadeTo('slow', 1);
+        });
+
+        $('.botSwipeContainer').css('margin-top', '-120px');
     });
 });
 
