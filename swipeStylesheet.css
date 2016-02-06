@@ -31,18 +31,17 @@ html, body {
 #yes_pic {
     height: 50px;
     margin-top: 200px;
-    float: center;
+    float: right;
 }
 
 #swipe_box  {
-  background-color: #fff 
+  /*background-color: #fff */
 }
 
 #photo_sq {
   background-color: #aaaaaa;
   width: 450px;
   height: 450px;
-  margin: auto;
 
   -webkit-border-radius: 20px 20px 20px 20px;
   -moz-border-radius: 20px 20px 20px 20px;
@@ -55,5 +54,6 @@ html, body {
   box-sizing: border-box;
 
   background-color:#696e70;
-  float: left;
+  float: center;
+  margin-left: 125px;
 }
