@@ -99,11 +99,24 @@ function getTopRequest(keywords, searchIndex, page) {
         dataFromRequest = res;
         allTopData.push(dataFromRequest);
         for (item of dataFromRequest.Items.Item) {
-            var trimData = {
-                url: item.LargeImage.URL,
-                title: item.ItemAttributes.Title,
-                price: item.OfferSummary.LowestNewPrice.FormattedPrice
-            };
+            var trimData;
+            try {
+                trimData = {
+                    url: item.LargeImage.URL,
+                    title: item.ItemAttributes.Title,
+                    price: item.OfferSummary.LowestNewPrice.FormattedPrice,
+                    details: item.DetailPageURL
+                };
+            } catch(e) {
+                setTimeout( function(){
+                    trimData = {
+                        url: item.LargeImage.URL,
+                        title: item.ItemAttributes.Title,
+                        price: item.OfferSummary.LowestNewPrice.FormattedPrice,
+                        details: item.DetailPageURL
+                    };
+                }, 1000);
+            }
             topLinks.push(trimData);
         }
 
@@ -123,11 +136,24 @@ function getBotRequest(keywords, searchIndex, page) {
         dataFromRequest = res;
         allBotData.push(dataFromRequest);
         for (item of dataFromRequest.Items.Item) {
-            var trimData = {
-                url: item.LargeImage.URL,
-                title: item.ItemAttributes.Title,
-                price: item.OfferSummary.LowestNewPrice.FormattedPrice
-            };
+            var trimData;
+            try {
+                trimData = {
+                    url: item.LargeImage.URL,
+                    title: item.ItemAttributes.Title,
+                    price: item.OfferSummary.LowestNewPrice.FormattedPrice,
+                    details: item.DetailPageURL
+                };
+            } catch(e) {
+                setTimeout( function(){
+                    trimData = {
+                        url: item.LargeImage.URL,
+                        title: item.ItemAttributes.Title,
+                        price: item.OfferSummary.LowestNewPrice.FormattedPrice,
+                        details: item.DetailPageURL
+                    };
+                }, 1000);
+            }
             botLinks.push(trimData);
         }
 
@@ -205,6 +231,9 @@ function bindCheckBoxes() {
     $('.botSwipeContainer #yes_pic').click( function (){
         $("#gradient").addClass("hidden");
         $(".botSwipeContainer #add_screen").removeClass("hidden");
+        console.log(topLinks[topIndex-1].details);
+        $(".buy-top").attr('href', topLinks[topIndex-1].details);
+        $(".buy-bot").attr('href', botLinks[topIndex-1].details);
     });
 }
 
