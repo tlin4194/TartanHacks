@@ -232,9 +232,16 @@ function bindCheckBoxes() {
         $("#gradient").addClass("hidden");
         $(".botSwipeContainer #add_screen").removeClass("hidden");
         console.log(topLinks[topIndex-1].details);
-        $(".buy-top").attr('href', topLinks[topIndex-1].details);
-        $(".buy-bot").attr('href', botLinks[topIndex-1].details);
+        document.getElementById("buy-top-link").href = 
+            topLinks[topIndex-1].details;
+
+        document.getElementById("buy-bot-link").href =
+            botLinks[botIndex-1].details;
     });
+}
+
+function openLink(url) {
+    window.open(url, '_blank');
 }
 
 
